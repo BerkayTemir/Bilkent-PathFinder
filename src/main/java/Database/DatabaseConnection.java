@@ -6,22 +6,19 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    public static void main(String[] args) {
+    private static final String URL =
+        "jdbc:postgresql://localhost:5432/bilkent_pathfinder";
 
-        String jdbcURL = "jdbc:postgresql://localhost:5432/bilkent_pathfinder";
-        String username = "postgres";
-        String password = System.getenv("DB_PASSWORD");
+    private static final String USERNAME = "postgres";
 
-        try {
-            Connection connection =
-                DriverManager.getConnection(jdbcURL, username, password);
+    private static final String PASSWORD =
+        System.getenv("DB_PASSWORD");
 
-            System.out.println("Connected successfully!");
+    public static Connection getConnection()
+            throws SQLException {
 
-            connection.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        return DriverManager.getConnection(
+            URL, USERNAME, PASSWORD
+        );
     }
 }
