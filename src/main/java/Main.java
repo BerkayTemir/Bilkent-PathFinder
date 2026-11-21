@@ -10,7 +10,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(
-            getClass().getResource("/SignUpView.fxml")
+            getClass().getResource("/LoginView.fxml")
         );
 
         Scene scene = new Scene(loader.load());

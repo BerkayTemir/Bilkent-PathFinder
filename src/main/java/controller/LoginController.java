@@ -1,10 +1,13 @@
-
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -19,9 +22,45 @@ public class LoginController {
 
     @FXML
     private void handleLogin() {
-        String username = usernameField.getText();
+
+        String username = usernameField.getText().trim();
         String password = passwordField.getText();
 
+        if (username.isBlank() || password.isBlank()) {
+            messageLabel.setText("Please fill in all fields.");
+            return;
+        }
+
+        // TODO: Connect username login to Supabase Auth.
+        messageLabel.setText("Login is not connected yet.");
+    }
+
+    @FXML
+    private void handleForgotPassword() {
+
+        // TODO: Open a screen that asks for the user's email.
+        messageLabel.setText("Please enter your email to reset your password.");
+    }
+
+    @FXML
+    private void handleCreateAccount() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/SignUpView.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage stage = (Stage) usernameField
+                .getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Bilkent Pathfinder - Sign Up");
+
+        } catch (Exception e) {
+            messageLabel.setText("Could not open Sign Up.");
+            e.printStackTrace();
+        }
     }
 }
-
