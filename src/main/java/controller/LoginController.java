@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import service.AuthService;
 
 public class LoginController {
 
@@ -31,8 +32,26 @@ public class LoginController {
             return;
         }
 
-        // TODO: Connect username login to Supabase Auth.
-        messageLabel.setText("Login is not connected yet.");
+        AuthService authService = new AuthService();
+
+        try {
+            if (!authService.login(username, password)) {
+                messageLabel.setText("Invalid username or password!");
+                return;
+            }
+
+            messageLabel.setText("Login successful!");
+
+            Parent homePage = FXMLLoader.load(
+                getClass().getResource("/MainView.fxml")
+            );
+
+            messageLabel.getScene().setRoot(homePage);
+
+        } catch (Exception e) {
+            messageLabel.setText("An error occurred!");
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -63,4 +82,5 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+    
 }

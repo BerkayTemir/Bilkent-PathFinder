@@ -86,4 +86,35 @@ public class AuthService {
                     .replace("\r", "\\r")
                     .replace("\t", "\\t");
     }
+
+    public boolean login(String username, String password) throws Exception {
+
+        String body = """
+            {
+                "username": "%s",
+                "password": "%s"
+            }
+            """.formatted(
+                escapeJson(username),
+                escapeJson(password)
+            );
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(URL + "/functions/v1/username-login"))
+            .header("apikey", API_KEY)
+            .header("Content-Type", "application/json")
+            .POST(BodyPublishers.ofString(body))
+            .build();
+
+        HttpResponse<String> response = client.send(
+            request,
+            HttpResponse.BodyHandlers.ofString()
+        );
+        System.out.println("Login status: " + response.statusCode());
+
+        if (response.statusCode() != 200) {
+            System.out.println(response.body());
+        }
+        return response.statusCode() == 200;
+    }
 }
