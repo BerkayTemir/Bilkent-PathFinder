@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import security.PasswordHasher;
 import service.AuthService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -82,8 +81,7 @@ public class SignUpController {
 
             Parent root = loader.load();
 
-            Stage stage = (Stage) usernameField
-                .getScene().getWindow();
+            Stage stage = (Stage) usernameField.getScene().getWindow();
 
             stage.setScene(new Scene(root));
             stage.setTitle("Bilkent Pathfinder - Login");

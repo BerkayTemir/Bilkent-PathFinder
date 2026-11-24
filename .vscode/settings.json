@@ -7,6 +7,7 @@
   "java.project.referencedLibraries": [
     "C:/Users/UZM/Downloads/openjfx-27_windows-x64_bin-sdk/javafx-sdk-27/lib/*.jar"
   ],
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.debug.settings.onBuildFailureProceed": true
 }
 

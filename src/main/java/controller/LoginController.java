@@ -42,9 +42,7 @@ public class LoginController {
 
             messageLabel.setText("Login successful!");
 
-            Parent homePage = FXMLLoader.load(
-                getClass().getResource("/MainView.fxml")
-            );
+            Parent homePage = FXMLLoader.load(getClass().getResource("/MainView.fxml"));
 
             messageLabel.getScene().setRoot(homePage);
 
@@ -65,14 +63,11 @@ public class LoginController {
     private void handleCreateAccount() {
 
         try {
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/SignUpView.fxml")
-            );
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignUpView.fxml"));
 
             Parent root = loader.load();
 
-            Stage stage = (Stage) usernameField
-                .getScene().getWindow();
+            Stage stage = (Stage) usernameField.getScene().getWindow();
 
             stage.setScene(new Scene(root));
             stage.setTitle("Bilkent Pathfinder - Sign Up");
