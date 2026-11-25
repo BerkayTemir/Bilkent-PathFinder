@@ -1,0 +1,41 @@
+
+.field-label {
+    -fx-text-fill: #CBD5E1;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.form-field {
+    -fx-background-color: #26354B;
+    -fx-background-radius: 9px;
+
+    -fx-border-color: #3A4A62;
+    -fx-border-radius: 9px;
+
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #94A3B8;
+
+    -fx-padding: 12px;
+    -fx-font-size: 13px;
+}
+
+.form-field:focused {
+    -fx-border-color: #3B82F6;
+    -fx-border-width: 2px;
+}
+
+.signup-button {
+    -fx-background-color: #3B82F6;
+    -fx-background-radius: 9px;
+
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 13px;
+    -fx-cursor: hand;
+}
+
+.signup-button:hover {
+    -fx-background-color: #2563EB;
+}

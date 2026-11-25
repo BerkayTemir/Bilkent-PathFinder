@@ -7,26 +7,41 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<BorderPane prefHeight="336.0" prefWidth="419.0" style="-fx-background-color: #F1F5F9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainPageController">
 
-<BorderPane prefHeight="336.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
-   <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Bilkent PathFinder" />
-         </children>
-      </HBox>
-   </top>
-   <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="navigationButton" mnemonicParsing="false" onAction="#handleNavigation" text="Navigation" />
-            <Button mnemonicParsing="false" text="Favorite places" />
-            <Button mnemonicParsing="false" text="Schedule" />
-            <Button mnemonicParsing="false" text="Friends" />
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <StackPane fx:id="mapContainer" prefHeight="314.0" prefWidth="319.0" BorderPane.alignment="CENTER" />
-   </center>
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="452.0" style="-fx-background-color: white; -fx-padding: 0 18 0 18;                      -fx-border-color: transparent transparent #DCE4EE transparent;">
+            <children>
+                <Label style="-fx-text-fill: #172B4D; -fx-font-size: 19px;                               -fx-font-weight: bold;" text="Bilkent PathFinder" />
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" style="-fx-background-color: white; -fx-padding: 0 18 0 18;                      -fx-border-color: transparent transparent #DCE4EE transparent;" />
+            </children>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox prefWidth="140.0" spacing="8.0" style="-fx-background-color: white; -fx-padding: 12;                      -fx-border-color: transparent #DCE4EE transparent transparent;">
+            <children>
+                <Button fx:id="navigationButton" alignment="CENTER_LEFT" maxWidth="Infinity" style="-fx-background-color: #3B6FC4; -fx-text-fill: #FFFFFF; -fx-background-radius: 6; -fx-padding: 8 10 8 10;" text="Navigation" />
+
+                <Button alignment="CENTER_LEFT" maxWidth="Infinity" style="-fx-background-color: #F1F5F9; -fx-text-fill: #334155;                                -fx-background-radius: 6; -fx-padding: 8 10 8 10;" text="Favorite places" />
+
+                <Button alignment="CENTER_LEFT" maxWidth="Infinity" style="-fx-background-color: #F1F5F9; -fx-text-fill: #334155;                                -fx-background-radius: 6; -fx-padding: 8 10 8 10;" text="Schedule" />
+
+                <Button fx:id="friendsButton" alignment="CENTER_LEFT" maxWidth="Infinity" onAction="#showFriends" style="-fx-background-color: #F1F5F9; -fx-text-fill: #334155;                                -fx-background-radius: 6; -fx-padding: 8 10 8 10;" text="Friends" />
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane style="-fx-padding: 14;">
+            <children>
+                <StackPane fx:id="mapContainer" style="-fx-background-color: white; -fx-background-radius: 10;                                   -fx-border-color: #DCE4EE; -fx-border-radius: 10;">
+                    <children>
+                        <Label style="-fx-text-fill: #64748B; -fx-font-size: 14px;" text="Campus map" />
+                    </children>
+                </StackPane>
+            </children>
+        </StackPane>
+    </center>
+
 </BorderPane>
