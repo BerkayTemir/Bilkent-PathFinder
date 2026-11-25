@@ -3,14 +3,20 @@ package com.bilkent;
 public class Location {
 
     private long id;
-    private double x;
-    private double y;
+    private double lon;
+    private double lat;
     private String name;
-    public Location(long id, double x, double y, String name){
+    private LocationType type;
+    public Location(long id, double lon, double lat, String name, LocationType type){
         this.id = id;
-        this.x = x;
-        this.y = y;
+        this.lon = lon;
+        this.lat = lat;
         this.name = name;
+        this.type = type;
+    }
+
+    public LocationType getType() {
+        return type;
     }
 
     public long getId() {
@@ -21,17 +27,17 @@ public class Location {
         return name;
     }
 
-    public double getX() {
-        return x;
+    public double getLon() {
+        return lon;
     }
 
-    public double getY() {
-        return y;
+    public double getLat() {
+        return lat;
     }
 
     @Override 
     public String toString(){
-        return "Name: " + name + "\nId: " + id + "\nx: " + x + "\ny: " + y;
+        return "Name: " + name + "\nId: " + id + "\nlon: " + lon + "\nlat: " + lat;
     }
     
 }
