@@ -25,13 +25,21 @@ public class MainPageController {
 
         friendsButton.getScene().setRoot(friendsView);
     }
+    @FXML
+    protected void showSchedule() throws IOException {
+        Parent scheduleView = FXMLLoader.load(
+            getClass().getResource("/ScheduleView.fxml")
+        );
 
-   /*  @FXML
+        scheduleButton.getScene().setRoot(scheduleView);
+    }
+
+    @FXML
     private void showNavigation() throws IOException {
         Parent mainView = FXMLLoader.load(
             getClass().getResource("/MainView.fxml")
         );
 
         navigationButton.getScene().setRoot(mainView);
-    } */
+    } 
 }
