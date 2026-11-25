@@ -10,7 +10,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(
-            getClass().getResource("/LoginView.fxml")
+            getClass().getResource("/LoginView.fxml") // supa base keyim olmadigi icin buraya MainView.fxml yazdim, degistirilebilir
         );
 
         Scene scene = new Scene(loader.load());
