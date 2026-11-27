@@ -61,9 +61,11 @@ public class SignUpController {
             int status = authService.signUp(email, password, username, name, surname);
 
             if (status == 200 || status == 201) {
+                messageLabel.setStyle("-fx-text-fill: #86EFAC;");
                 messageLabel.setText("Account created successfully!");
             } else {
-                messageLabel.setText("Registration failed! Status: " + status);
+                messageLabel.setText(
+                        "Couldn't create your account. Check your details and try again.");
             }
 
         } catch (Exception e) {

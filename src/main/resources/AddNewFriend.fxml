@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.AddNewFriendController"
@@ -33,27 +34,52 @@
             <Button text="Friends" alignment="CENTER_LEFT" maxWidth="Infinity"
                     onAction="#backToFriends"
                     style="-fx-background-color: #3B6FC4; -fx-text-fill: white; -fx-background-radius: 6; -fx-padding: 8 10;" />
+                    <Region VBox.vgrow="ALWAYS" />
+                    <fx:include source="LogoutButton.fxml" />
         </VBox>
     </left>
 
-    <center>
-        <VBox style="-fx-padding: 14;">
+   <center>
+        <VBox spacing="12" style="-fx-padding: 14;">
             <VBox spacing="10"
-                  style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #DCE4EE; -fx-border-radius: 10; -fx-padding: 12;">
+                style="-fx-background-color: white;
+                        -fx-background-radius: 10;
+                        -fx-border-color: #DCE4EE;
+                        -fx-border-radius: 10;
+                        -fx-padding: 12;">
                 <Label text="Add Friend"
-                       style="-fx-font-size: 19px; -fx-font-weight: bold; -fx-text-fill: #172B4D;" />
+                    style="-fx-font-size: 19px; -fx-font-weight: bold; -fx-text-fill: #172B4D;" />
                 <Label text="Username" style="-fx-text-fill: #334155;" />
                 <TextField fx:id="usernameField" promptText="Enter username" />
 
                 <HBox alignment="CENTER_RIGHT" spacing="8">
+                    <Button text="Search" defaultButton="true" onAction="#searchUser" />
                     <Button text="Cancel" onAction="#backToFriends" />
-                    <Button fx:id="sendButton" text="Send Request"
-                            defaultButton="true" onAction="#sendRequest"
-                            style="-fx-background-color: #3B6FC4; -fx-text-fill: white; -fx-background-radius: 6; -fx-padding: 7 10;" />
                 </HBox>
 
-                <Label fx:id="messageLabel" visible="false" managed="false" wrapText="true" />
+                <Label fx:id="messageLabel"
+                    visible="false" managed="false" wrapText="true" />
             </VBox>
+
+            <HBox fx:id="foundUserCard"
+                visible="false" managed="false"
+                alignment="CENTER_LEFT" spacing="16"
+                style="-fx-background-color: white;
+                        -fx-background-radius: 14;
+                        -fx-border-color: #DCE4EE;
+                        -fx-border-radius: 14;
+                        -fx-padding: 14 16;">
+                <Label fx:id="foundUserLabel"
+                    maxWidth="Infinity"
+                    HBox.hgrow="ALWAYS"
+                    style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #172B4D;" />
+                <Button fx:id="sendButton" text="Send Request"
+                        disable="true" onAction="#sendRequest"
+                        style="-fx-background-color: #3B6FC4;
+                            -fx-text-fill: white;
+                            -fx-background-radius: 6;
+                            -fx-padding: 7 10;" />
+            </HBox>
         </VBox>
     </center>
 

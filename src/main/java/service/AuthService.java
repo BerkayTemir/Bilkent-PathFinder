@@ -87,8 +87,16 @@ public class AuthService {
                     .replace("\t", "\\t");
     }
 
+    private String accessToken;
+
+    public FriendRequestService createFriendRequestService() {
+        return new FriendRequestService(URI.create(URL), API_KEY, () -> accessToken);
+    } 
+
+
     public boolean login(String username, String password) throws Exception {
 
+        accessToken = null;
         String body = """
             {
                 "username": "%s",
@@ -115,6 +123,19 @@ public class AuthService {
         if (response.statusCode() != 200) {
             System.out.println(response.body());
         }
-        return response.statusCode() == 200;
+        if (response.statusCode() != 200) {
+            return false;
+        }
+
+        var tokenMatcher = java.util.regex.Pattern
+                .compile("\"access_token\"\\s*:\\s*\"([A-Za-z0-9_.-]+)\"")
+                .matcher(response.body());
+
+        if (!tokenMatcher.find()) {
+            throw new IllegalStateException("Login response is missing an access token.");
+        }
+
+        accessToken = tokenMatcher.group(1);
+        return true;
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Hyperlink?>
+
+<Hyperlink xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controller.LogoutController"
+           text="Log Out"
+           onAction="#handleLogout"
+           style="-fx-text-fill: #475569;
+                  -fx-font-size: 12px;
+                  -fx-underline: true;
+                  -fx-padding: 4 0;" />

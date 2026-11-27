@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import service.FriendRequestService;
 
 public class AddNewFriendController {
@@ -18,7 +19,11 @@ public class AddNewFriendController {
     @FXML private Button sendButton;
     @FXML private Label messageLabel;
 
+    @FXML private HBox foundUserCard;
+    @FXML private Label foundUserLabel;
+
     private Parent friendsView;
+    private String selectedUsername;
 
     public void setFriendsView(Parent friendsView) {
         this.friendsView = friendsView;
@@ -26,14 +31,12 @@ public class AddNewFriendController {
 
     @FXML
     private void sendRequest() {
-        String username = usernameField.getText().strip();
+        String username = selectedUsername;
 
-        if (username.startsWith("@")) {
-            username = username.substring(1).strip();
-        }
-
-        if (username.isEmpty()) {
-            showMessage("Enter a username.", false);
+        if (username == null || !username.equals(usernameField.getText().strip())) {
+            selectedUsername = null;
+            sendButton.setDisable(true);
+            showMessage("Search for a username first.", false);
             return;
         }
 
@@ -41,7 +44,7 @@ public class AddNewFriendController {
         Object sessionService = scene.getProperties().get(FriendRequestService.class);
 
         if (!(sessionService instanceof FriendRequestService service)) {
-            showMessage("Sign in before sending a friend request.", false);
+            showMessage("Friend requests are not available yet.", false);
             return;
         }
 
@@ -90,5 +93,54 @@ public class AddNewFriendController {
         messageLabel.setStyle(positive ? "-fx-text-fill: #166534;" : "-fx-text-fill: #B91C1C;");
         messageLabel.setManaged(true);
         messageLabel.setVisible(true);
+    }
+
+    @FXML
+    private void searchUser() {
+
+        foundUserCard.setVisible(false);
+        foundUserCard.setManaged(false);
+        sendButton.setDisable(true);
+
+        String username = usernameField.getText().strip();
+        selectedUsername = null;
+        sendButton.setDisable(true);
+
+        if (username.isEmpty()) {
+            showMessage("Enter a username.", false);
+            return;
+        }
+
+        var scene = usernameField.getScene();
+        if (!(scene.getProperties().get(FriendRequestService.class)
+                instanceof FriendRequestService service)) {
+            showMessage("Sign in again to search.", false);
+            return;
+        }
+
+        showMessage("Searching...", true);
+
+        service.usernameExists(username).whenComplete((found, error) ->
+                Platform.runLater(() -> {
+                    if (usernameField.getScene() != scene
+                            || !username.equals(usernameField.getText().strip())) {
+                        return;
+                    }
+
+                    if (error != null) {
+                        showMessage("Could not search. Try again.", false);
+                    } else if (found) {
+                        selectedUsername = username;
+                        messageLabel.setVisible(false);
+                        messageLabel.setManaged(false);
+
+                        foundUserLabel.setText(username);
+                        foundUserCard.setManaged(true);
+                        foundUserCard.setVisible(true);
+                        sendButton.setDisable(false);
+                    } else {
+                        showMessage("User not found.", false);
+                    }
+                }));
     }
 }

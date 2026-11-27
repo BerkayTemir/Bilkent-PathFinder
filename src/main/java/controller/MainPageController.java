@@ -7,8 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
-public class MainPageController {
+
+public class MainPageController{
 
     @FXML private Button navigationButton;
     @FXML private Button favoritePlacesButton;
@@ -23,15 +25,20 @@ public class MainPageController {
             getClass().getResource("/FriendsPageView.fxml")
         );
 
-        friendsButton.getScene().setRoot(friendsView);
+        var scene = friendsButton.getScene();
+        scene.setRoot(friendsView);
+        ((Stage) scene.getWindow()).setTitle("Bilkent Pathfinder - Friends");
     }
     @FXML
     protected void showSchedule() throws IOException {
+        System.out.println("showSchedule called");
         Parent scheduleView = FXMLLoader.load(
             getClass().getResource("/ScheduleView.fxml")
         );
 
-        scheduleButton.getScene().setRoot(scheduleView);
+        var scene = scheduleButton.getScene();
+        scene.setRoot(scheduleView);
+        ((Stage) scene.getWindow()).setTitle("Bilkent Pathfinder - Schedule");
     }
 
     @FXML
@@ -40,6 +47,8 @@ public class MainPageController {
             getClass().getResource("/MainView.fxml")
         );
 
-        navigationButton.getScene().setRoot(mainView);
+        var scene = navigationButton.getScene();
+        scene.setRoot(mainView);
+        ((Stage) scene.getWindow()).setTitle("Bilkent Pathfinder - Navigation");
     } 
 }

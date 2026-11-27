@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import service.AuthService;
+import service.FriendRequestService;
 
 public class LoginController {
 
@@ -44,7 +45,14 @@ public class LoginController {
 
             Parent homePage = FXMLLoader.load(getClass().getResource("/MainView.fxml"));
 
-            messageLabel.getScene().setRoot(homePage);
+            var scene = messageLabel.getScene();
+            scene.getProperties().put(
+                FriendRequestService.class,
+                authService.createFriendRequestService()
+            );
+            scene.setRoot(homePage);
+            Stage stage = (Stage) scene.getWindow();
+            stage.setTitle("Bilkent Pathfinder - Navigation");
 
         } catch (Exception e) {
             messageLabel.setText("An error occurred!");

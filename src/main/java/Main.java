@@ -10,12 +10,12 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(
-            getClass().getResource("/LoginView.fxml") // supa base keyim olmadigi icin buraya MainView.fxml yazdim, degistirilebilir
+            getClass().getResource("/LoginView.fxml") 
         );
 
         Scene scene = new Scene(loader.load());
 
-        stage.setTitle("Bilkent Pathfinder - Sign Up");
+        stage.setTitle("Bilkent Pathfinder - Login");
         stage.setScene(scene);
         stage.show();
     }
